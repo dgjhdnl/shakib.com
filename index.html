@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shakib Al Hasan — Vibe Coder & Multidisciplinary Creator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+            display: ['Space Grotesk', 'Hind Siliguri', 'sans-serif'],
+            bangla: ['Hind Siliguri', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#06070a',
+            slateGlass: 'rgba(255, 255, 255, 0.04)',
+          },
+          animation: {
+            'float-slow': 'floatSlow 9s ease-in-out infinite',
+            'float-delayed': 'floatSlow 11s ease-in-out 3s infinite',
+            'pulse-glow': 'pulseGlow 6s ease-in-out infinite',
+          },
+          keyframes: {
+            floatSlow: {
+              '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+              '50%': { transform: 'translate3d(18px, -24px, 0) scale(1.06)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.45' },
+              '50%': { opacity: '0.8' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* Base liquid glass styling & custom scrollbars */
+    body {
+      background-color: #050608;
+      color: #f4f4f6;
+      overflow-x: hidden;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    /* Subtle noise grain overlay for authentic frosted glass texture */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Core Liquid Glass Surface */
+    .liquid-glass {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.085) 0%,
+        rgba(255, 255, 255, 0.025) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+      );
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 0 rgba(255, 255, 255, 0.05);
+    }
+
+    /* Elevated interactive glass card */
+    .liquid-card {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.07) 0%,
+        rgba(255, 255, 255, 0.02) 100%
+      );
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.35s ease,
+                  background 0.35s ease,
+                  box-shadow 0.35s ease;
+    }
+
+    .liquid-card:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.11) 0%,
+        rgba(255, 255, 255, 0.035) 100%
+      );
+      box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+    }
+
+    /* Pill glass buttons */
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .glass-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-2px);
+    }
+
+    .glass-pill.active {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.1));
+      border-color: rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+      box-shadow:
+        0 8px 24px rgba(255, 255, 255, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    /* Portrait rim light & monochrome blending */
+    .portrait-frame {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease-out;
+    }
+
+    .portrait-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0) 35%,
+        rgba(5, 6, 8, 0.72) 100%
+      );
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+    }
+
+    /* macOS Liquid Glass Floating Dock */
+    .glass-dock {
+      background: rgba(18, 20, 26, 0.65);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .dock-item {
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease;
+    }
+
+    @media (min-width: 768px) {
+      .dock-item:hover {
+        transform: translateY(-6px) scale(1.14);
+      }
+    }
+
+    /* Scroll reveal utility */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050608;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-white/25 selection:text-white pb-28">
+  <!-- Subtle Texture Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Ambient Monochrome & Silver-Slate Mesh Orbs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-32 -left-24 w-[28rem] h-[28rem] rounded-full bg-white/[0.06] blur-[110px] animate-float-slow"></div>
+    <div class="absolute top-1/3 -right-28 w-[34rem] h-[34rem] rounded-full bg-slate-300/[0.05] blur-[130px] animate-float-delayed"></div>
+    <div class="absolute -bottom-32 left-1/3 w-[30rem] h-[30rem] rounded-full bg-zinc-400/[0.045] blur-[120px] animate-pulse-glow"></div>
+    <!-- Subtle architectural grid lines -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_75%_65%_at_50%_30%,#000_55%,transparent_100%)]"></div>
+  </div>
+
+  <!-- Top Minimal Glass Status Bar -->
+  <header class="sticky top-4 z-40 px-4 sm:px-6 max-w-6xl mx-auto">
+    <nav class="liquid-glass rounded-full px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-full bg-white/10 border border-white/25 flex items-center justify-center font-display font-bold text-sm tracking-wider text-white shadow-inner group-hover:bg-white/20 transition">
+          SH
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-semibold text-sm sm:text-base tracking-tight text-white leading-none">
+            Shakib Al Hasan
+          </span>
+          <span class="font-bangla text-[11px] text-zinc-400 leading-tight mt-0.5">
+            সাকিব আল হাসান • Creative Studio
+          </span>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-2 text-xs text-zinc-300 bg-white/[0.04] border border-white/10 rounded-full px-3.5 py-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Available for Vibe Coding & Creative Projects</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="toggleLanguage()" id="langToggleBtn" class="glass-pill rounded-full px-3 py-1.5 text-xs font-medium text-zinc-200 flex items-center gap-1.5" title="Switch Language / ভাষা পরিবর্তন">
+          <i data-lucide="languages" class="w-3.5 h-3.5 text-zinc-300"></i>
+          <span id="langLabel">বাংলা</span>
+        </button>
+        <a href="https://wa.me/8801938184786" target="_blank" rel="noopener noreferrer" class="rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium bg-white text-black hover:bg-zinc-200 transition shadow-[0_0_20px_rgba(255,255,255,0.25)]">
+          Hire Me
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 space-y-20 sm:space-y-28">
+    <!-- HERO SECTION -->
+    <section id="home" class="relative">
+      <div class="liquid-glass rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-12 relative overflow-hidden">
+        <!-- Specular Top Edge Highlight -->
+        <div class="absolute top-0 left-12 right-12 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <!-- Left Column: Identity & Dynamic Role Pill Switcher -->
+          <div class="lg:col-span-7 space-y-6 text-left z-10">
+            <div class="inline-flex items-center gap-2.5 glass-pill rounded-full px-4 py-1.5 text-xs text-zinc-200">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-white"></i>
+              <span data-en="Digital Architect • Visual Storyteller • Vibe Coder" data-bn="ডিজিটাল আর্কিটেক্ট • ভিজ্যুয়াল স্টোরিটেলার • ভাইব কোডার">
+                Digital Architect • Visual Storyteller • Vibe Coder
+              </span>
+            </div>
+
+            <div class="space-y-2">
+              <p class="font-bangla text-base sm:text-lg text-zinc-400 font-medium tracking-wide">
+                হ্যালো, আমি — <span class="text-white font-semibold">সাকিব আল হাসান</span>
+              </p>
+              <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+                Shakib Al Hasan
+              </h1>
+              <div class="pt-1 flex flex-wrap items-center gap-2 text-lg sm:text-2xl font-display text-zinc-300">
+                <span data-en="Crafting digital experiences as a" data-bn="আমি কাজ করছি একজন">Crafting digital experiences as a</span>
+                <span id="typewriterRole" class="px-3 py-0.5 rounded-xl bg-white/10 border border-white/20 text-white font-semibold shadow-inner">
+                  Vibe Coder
+                </span>
+              </div>
+            </div>
+
+            <p id="heroBio" class="text-zinc-300/90 text-sm sm:text-base leading-relaxed max-w-2xl"
+               data-en="Blending AI-powered Vibe Coding with high-impact visual design. From fluid glassmorphic UI/UX interfaces and iconic logos to high-CTR YouTube thumbnails and cinematic video edits—I turn raw ideas into unforgettable digital experiences."
+               data-bn="AI-চালিত ভাইব কোডিং এবং আধুনিক ভিজ্যুয়াল ডিজাইনের সমন্বয়ে আমি তৈরি করি অনন্য ডিজিটাল অভিজ্ঞতা। গ্লাসমরফিজম UI/UX ইন্টারফেস ও মিনিমালিস্ট লোগো থেকে শুরু করে হাই-CTR থাম্বনেইল এবং সিনেম্যাটিক ভিডিও এডিটিং—সবকিছুই নিখুঁতভাবে ফুটিয়ে তুলি।">
+              Blending AI-powered Vibe Coding with high-impact visual design. From fluid glassmorphic UI/UX interfaces and iconic logos to high-CTR YouTube thumbnails and cinematic video edits—I turn raw ideas into unforgettable digital experiences.
+            </p>
+
+            <!-- Interactive Role Pills -->
+            <div class="space-y-2.5">
+              <p class="text-[11px] uppercase tracking-[0.18em] text-zinc-400 font-medium">
+                Tap a discipline to explore my craft
+              </p>
+              <div id="heroRolePills" class="flex flex-wrap gap-2">
+                <!-- Populated dynamically by JS -->
+              </div>
+            </div>
+
+            <!-- Primary CTA Buttons -->
+            <div class="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
+              <a href="#works" class="rounded-2xl px-6 py-3.5 bg-white text-black font-semibold text-sm flex items-center gap-2 hover:bg-zinc-200 transition shadow-[0_10px_30px_rgba(255,255,255,0.2)]">
+                <span data-en="Explore Selected Works" data-bn="আমার কাজগুলো দেখুন">Explore Selected Works</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              </a>
+              <a href="https://wa.me/8801938184786" target="_blank" rel="noopener noreferrer" class="glass-pill rounded-2xl px-6 py-3.5 text-white font-medium text-sm flex items-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
+                <span data-en="Contact on WhatsApp" data-bn="হোয়াটসঅ্যাপে যোগাযোগ">Contact on WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Seamless Cutout Portrait on Top Right -->
+          <div class="lg:col-span-5 flex justify-center lg:justify-end items-start relative">
+            <div class="relative w-full max-w-[330px] sm:max-w-[370px] lg:max-w-[400px] flex justify-center items-end pt-2">
+              <!-- Ambient Rim Glow behind Cutout -->
+              <div class="absolute top-6 left-1/2 -translate-x-1/2 w-64 h-64 sm:w-72 sm:h-72 rounded-full bg-white/[0.12] blur-[65px] pointer-events-none"></div>
+              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-56 h-24 rounded-full bg-zinc-300/[0.08] blur-[40px] pointer-events-none"></div>
+
+              <!-- Cutout Image with Smooth Bottom Fade -->
+              <div class="relative w-full overflow-hidden rounded-b-[2rem] [mask-image:linear-gradient(to_bottom,black_82%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_82%,transparent_100%)]">
+                <img
+                  src="https://res.cloudinary.com/ig62khat/image/upload/f_auto,q_auto/IMG_8257-cutout"
+                  alt="Shakib Al Hasan Cutout Portrait"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x750/111318/e4e4e7?text=Shakib+Al+Hasan';"
+                  class="w-full h-auto object-contain object-top drop-shadow-[0_22px_38px_rgba(0,0,0,0.85)] transition-transform duration-700 ease-out hover:scale-[1.02]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Glass Metrics Strip -->
+        <div class="mt-8 pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-4">
+            <p class="font-display text-2xl sm:text-3xl font-bold text-white">08+</p>
+            <p class="text-xs text-zinc-400 mt-0.5" data-en="Creative & Tech Disciplines" data-bn="ক্রিয়েটিভ ও টেক স্কিলস">Creative & Tech Disciplines</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-4">
+            <p class="font-display text-2xl sm:text-3xl font-bold text-white">120+</p>
+            <p class="text-xs text-zinc-400 mt-0.5" data-en="Videos, Thumbnails & Logos" data-bn="ভিডিও, থাম্বনেইল ও লোগো">Videos, Thumbnails & Logos</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-4">
+            <p class="font-display text-2xl sm:text-3xl font-bold text-white">10x</p>
+            <p class="text-xs text-zinc-400 mt-0.5" data-en="AI-Accelerated Vibe Coding" data-bn="দ্রুতগতির ভাইব কোডিং">AI-Accelerated Vibe Coding</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-4">
+            <p class="font-display text-2xl sm:text-3xl font-bold text-white">100%</p>
+            <p class="text-xs text-zinc-400 mt-0.5" data-en="Bespoke Glassmorphic Aesthetics" data-bn="ইউনিক গ্লাসমরফিজম ডিজাইন">Bespoke Glassmorphic Aesthetics</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE DISCIPLINES / BENTO CRAFT EXPLORER -->
+    <section id="craft" class="reveal space-y-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs uppercase tracking-[0.2em] text-zinc-400 font-medium">Multidisciplinary Expertise</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1"
+              data-en="What I Create & Engineer"
+              data-bn="আমার দক্ষতা ও সৃজনশীল কাজসমূহ">
+            What I Create & Engineer
+          </h2>
+        </div>
+        <p class="text-sm text-zinc-400 max-w-md"
+           data-en="Select any role card below to inspect my workflow, deliverables, and filter matching projects."
+           data-bn="যেকোনো একটি কার্ডে ক্লিক করে সেই কাজের ধরন, টুলস এবং প্রজেক্টগুলো দেখুন।">
+          Select any role card below to inspect my workflow, deliverables, and filter matching projects.
+        </p>
+      </div>
+
+      <!-- 8-Card Liquid Glass Bento Grid -->
+      <div id="rolesBentoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Rendered via JavaScript -->
+      </div>
+
+      <!-- Active Role Spotlight Glass Panel -->
+      <div id="roleSpotlightPanel" class="liquid-glass rounded-3xl p-6 sm:p-8 transition-all duration-300">
+        <!-- Rendered dynamically when a role is selected -->
+      </div>
+    </section>
+
+    <!-- SELECTED WORKS SHOWCASE -->
+    <section id="works" class="reveal space-y-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs uppercase tracking-[0.2em] text-zinc-400 font-medium">Portfolio Archive</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1"
+              data-en="Selected Works & Experiments"
+              data-bn="নির্বাচিত প্রজেক্ট ও ক্রিয়েটিভ কাজ">
+            Selected Works & Experiments
+          </h2>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div id="workFilterBar" class="flex flex-wrap gap-2">
+          <button onclick="filterWorks('all')" data-filter="all" class="work-filter-btn glass-pill active rounded-full px-4 py-1.5 text-xs font-medium text-white">
+            All Works
+          </button>
+          <button onclick="filterWorks('Vibe Coder')" data-filter="Vibe Coder" class="work-filter-btn glass-pill rounded-full px-4 py-1.5 text-xs font-medium text-zinc-300">
+            Vibe Coding
+          </button>
+          <button onclick="filterWorks('UI/UX Designer')" data-filter="UI/UX Designer" class="work-filter-btn glass-pill rounded-full px-4 py-1.5 text-xs font-medium text-zinc-300">
+            UI/UX
+          </button>
+          <button onclick="filterWorks('Video Editor')" data-filter="Video Editor" class="work-filter-btn glass-pill rounded-full px-4 py-1.5 text-xs font-medium text-zinc-300">
+            Video Editing
+          </button>
+          <button onclick="filterWorks('Logo Designer')" data-filter="Logo Designer" class="work-filter-btn glass-pill rounded-full px-4 py-1.5 text-xs font-medium text-zinc-300">
+            Logos & Brand
+          </button>
+          <button onclick="filterWorks('Thumbnail Maker')" data-filter="Thumbnail Maker" class="work-filter-btn glass-pill rounded-full px-4 py-1.5 text-xs font-medium text-zinc-300">
+            Thumbnails
+          </button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </section>
+
+    <!-- CREATIVE STACK & WORKFLOW SECTION -->
+    <section id="stack" class="reveal space-y-8">
+      <div class="liquid-glass rounded-[2rem] p-6 sm:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-5 space-y-4">
+            <span class="text-xs uppercase tracking-[0.2em] text-zinc-400 font-medium">Arsenal & Ecosystem</span>
+            <h2 class="font-display text-3xl font-bold text-white leading-tight"
+                data-en="Powered by AI & Industry-Standard Tools"
+                data-bn="আধুনিক AI এবং প্রফেশনাল টুলস ইকোসিস্টেম">
+              Powered by AI & Industry-Standard Tools
+            </h2>
+            <p class="text-sm text-zinc-300/90 leading-relaxed"
+               data-en="Whether shipping full-stack interactive web apps via Vibe Coding, color-grading cinematic timelines, or sculpting vector brand marks—every tool is chosen for speed, precision, and visual depth."
+               data-bn="ভাইব কোডিংয়ের মাধ্যমে ওয়েব অ্যাপ তৈরি হোক কিংবা সিনেম্যাটিক ভিডিও কালার গ্রেডিং ও ভেক্টর লোগো ডিজাইন—প্রতিটি কাজের জন্য সেরা টুলস ব্যবহার করি।">
+              Whether shipping full-stack interactive web apps via Vibe Coding, color-grading cinematic timelines, or sculpting vector brand marks—every tool is chosen for speed, precision, and visual depth.
+            </p>
+          </div>
+
+          <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3.5">
+            <!-- Tool Glass Chips -->
+            <div class="liquid-card rounded-2xl p-4 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white shrink-0">
+                <i data-lucide="terminal" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-white">AI Vibe Stack</p>
+                <p class="text-[11px] text-zinc-400">HTML5, Tailwind, JS, React</p>
+              </div>
+            </div>
+
+            <div class="liquid-card rounded-2xl p-4 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white shrink-0">
+                <i data-lucide="figma" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-white">Figma & Framer</p>
+                <p class="text-[11px] text-zinc-400">Glass UI & Prototyping</p>
+              </div>
+            </div>
+
+            <div class="liquid-card rounded-2xl p-4 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white shrink-0">
+                <i data-lucide="film" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-white">Premiere & CapCut</p>
+                <p class="text-[11px] text-zinc-400">Pacing, Cuts & Sound</p>
+              </div>
+            </div>
+
+            <div class="liquid-card rounded-2xl p-4 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white shrink-0">
+                <i data-lucide="wand-2" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-white">After Effects</p>
+                <p class="text-[11px] text-zinc-400">VFX & Motion Graphics</p>
+              </div>
+            </div>
+
+            <div class="liquid-card rounded-2xl p-4 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white shrink-0">
+                <i data-lucide="pen-tool" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-white">Illustrator</p>
+                <p class="text-[11px] text-zinc-400">Vector Logos & Identity</p>
+              </div>
+            </div>
+
+            <div class="liquid-card rounded-2xl p-4 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white shrink-0">
+                <i data-lucide="image" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-white">Photoshop</p>
+                <p class="text-[11px] text-zinc-400">High-CTR Thumbnails</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / COLLABORATE SECTION -->
+    <section id="contact" class="reveal">
+      <div class="liquid-glass rounded-[2rem] p-8 sm:p-12 text-center relative overflow-hidden">
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-white/10 blur-[80px] pointer-events-none"></div>
+
+        <span class="inline-flex items-center gap-2 glass-pill rounded-full px-4 py-1 text-xs text-zinc-300 mb-4">
+          <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+          Let's Build Something Iconic
+        </span>
+
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-white max-w-2xl mx-auto leading-tight"
+            data-en="Need a Website, Video Edit, Logo, or Viral Thumbnail?"
+            data-bn="ওয়েবসাইট, ভিডিও এডিট, লোগো কিংবা ভাইরাল থাম্বনেইল প্রয়োজন?">
+          Need a Website, Video Edit, Logo, or Viral Thumbnail?
+        </h2>
+
+        <p class="text-zinc-300/85 text-sm sm:text-base max-w-xl mx-auto mt-4"
+           data-en="Reach out directly to Shakib Al Hasan (সাকিব আল হাসান) for custom Vibe Coded apps, brand identities, UI/UX design, or video production."
+           data-bn="কাস্টম ওয়েব অ্যাপ, ব্র্যান্ড লোগো, UI/UX ডিজাইন অথবা প্রফেশনাল ভিডিও এডিটিংয়ের জন্য সরাসরি যোগাযোগ করুন সাকিব আল হাসানের সাথে।">
+          Reach out directly to Shakib Al Hasan (সাকিব আল হাসান) for custom Vibe Coded apps, brand identities, UI/UX design, or video production.
+        </p>
+
+        <div class="mt-8 flex flex-wrap justify-center gap-3 sm:gap-4">
+          <a href="https://wa.me/8801938184786" target="_blank" rel="noopener noreferrer" class="rounded-2xl px-7 py-4 bg-white text-black font-semibold text-sm flex items-center gap-2.5 hover:bg-zinc-200 transition shadow-[0_12px_35px_rgba(255,255,255,0.22)]">
+            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i>
+            <span>WhatsApp: 01938184786</span>
+          </a>
+
+          <button onclick="copyWhatsApp()" class="glass-pill rounded-2xl px-6 py-4 text-white font-medium text-sm flex items-center gap-2.5">
+            <i data-lucide="copy" class="w-4 h-4 text-zinc-300"></i>
+            <span id="copyPhoneText">01938184786</span>
+          </button>
+        </div>
+
+        <!-- Social Glass Links -->
+        <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-4 text-xs text-zinc-400">
+          <a href="#home" class="hover:text-white transition flex items-center gap-1.5">
+            <i data-lucide="github" class="w-4 h-4"></i> GitHub
+          </a>
+          <span>•</span>
+          <a href="#home" class="hover:text-white transition flex items-center gap-1.5">
+            <i data-lucide="youtube" class="w-4 h-4"></i> YouTube
+          </a>
+          <span>•</span>
+          <a href="#home" class="hover:text-white transition flex items-center gap-1.5">
+            <i data-lucide="dribbble" class="w-4 h-4"></i> Dribbble / Behance
+          </a>
+          <span>•</span>
+          <a href="#home" class="hover:text-white transition flex items-center gap-1.5">
+            <i data-lucide="instagram" class="w-4 h-4"></i> Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING MACOS-STYLE LIQUID GLASS DOCK -->
+  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 px-3 w-full max-w-fit">
+    <nav aria-label="Floating Dock Navigation" class="glass-dock rounded-2xl sm:rounded-full px-3 py-2 flex items-center gap-1.5 sm:gap-2.5">
+      <a href="#home" class="dock-item p-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-2 text-xs font-medium" title="Home">
+        <i data-lucide="home" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">Home</span>
+      </a>
+      <a href="#craft" class="dock-item p-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-2 text-xs font-medium" title="Skills & Roles">
+        <i data-lucide="layers" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">Roles</span>
+      </a>
+      <a href="#works" class="dock-item p-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-2 text-xs font-medium" title="Selected Works">
+        <i data-lucide="folder-kanban" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">Works</span>
+      </a>
+      <a href="#stack" class="dock-item p-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full text-zinc-300 hover:text-white hover:bg-white/10 flex items-center gap-2 text-xs font-medium" title="Tools & Stack">
+        <i data-lucide="cpu" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">Stack</span>
+      </a>
+      <div class="w-px h-5 bg-white/15 mx-0.5"></div>
+      <a href="https://wa.me/8801938184786" target="_blank" rel="noopener noreferrer" class="dock-item p-2.5 sm:px-4 sm:py-2 rounded-xl sm:rounded-full bg-white text-black hover:bg-zinc-200 flex items-center gap-2 text-xs font-semibold shadow-md" title="Contact on WhatsApp (01938184786)">
+        <i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
+        <span class="hidden sm:inline">Contact</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- PROJECT PREVIEW MODAL -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+    <div class="liquid-glass rounded-3xl max-w-xl w-full p-6 sm:p-8 relative animate-[fadeIn_0.25s_ease-out]">
+      <button onclick="closeProjectModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+      <div id="projectModalContent" class="space-y-4">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT / HIRE ME GLASS MODAL -->
+  <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+    <div class="liquid-glass rounded-3xl max-w-lg w-full p-6 sm:p-8 relative">
+      <button onclick="closeContactModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="space-y-1 mb-6">
+        <span class="text-xs uppercase tracking-widest text-zinc-400">Direct Inquiry</span>
+        <h3 class="font-display text-2xl font-bold text-white">Work with Shakib Al Hasan</h3>
+        <p class="font-bangla text-xs text-zinc-400">সাকিব আল হাসানের সাথে আপনার প্রজেক্ট নিয়ে আলোচনা করুন</p>
+      </div>
+
+      <form id="hireForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs text-zinc-300 mb-1.5">Your Name / আপনার নাম</label>
+          <input type="text" required placeholder="e.g. Tanvir Ahmed" class="w-full rounded-xl bg-white/[0.06] border border-white/15 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white/40" />
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-300 mb-1.5">Service Needed / কোন সার্ভিসটি প্রয়োজন?</label>
+          <select id="serviceSelect" class="w-full rounded-xl bg-zinc-900/90 border border-white/15 px-4 py-3 text-sm text-white focus:outline-none focus:border-white/40">
+            <option value="Vibe Coding & Web App">Vibe Coding & Interactive Website</option>
+            <option value="UI/UX Design">UI/UX Glassmorphic Design</option>
+            <option value="Video Editing & Motion">Cinematic Video Editing & VFX</option>
+            <option value="Logo & Brand Identity">Logo & Minimalist Brand Identity</option>
+            <option value="High-CTR Thumbnail">Viral YouTube Thumbnail Design</option>
+            <option value="Full Creative Package">Full Creative + Dev Package</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-300 mb-1.5">Project Brief / প্রজেক্টের বিবরণ</label>
+          <textarea rows="3" required placeholder="Tell me about your idea, timeline, or goals..." class="w-full rounded-xl bg-white/[0.06] border border-white/15 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white/40"></textarea>
+        </div>
+
+        <button type="submit" class="w-full rounded-xl py-3.5 bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition flex items-center justify-center gap-2 shadow-[0_8px_25px_rgba(255,255,255,0.2)]">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Send Message to Shakib</span>
+        </button>
+      </form>
+
+      <div id="formSuccessBanner" class="hidden mt-4 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 p-4 text-center space-y-1">
+        <p class="text-sm font-semibold text-emerald-300">Message Sent Successfully!</p>
+        <p class="text-xs text-zinc-300">ধন্যবাদ! সাকিব আল হাসান শীঘ্রই আপনার সাথে যোগাযোগ করবেন।</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="toastBanner" class="fixed top-20 right-5 z-50 hidden liquid-glass rounded-2xl px-4 py-3 text-xs font-medium text-white flex items-center gap-2 shadow-2xl">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMessage">Copied to clipboard!</span>
+  </div>
+
+  <script>
+    // Comprehensive Data for Shakib Al Hasan's 8 Creative & Tech Disciplines
+    const ROLES_DATA = [
+      {
+        id: 'vibe-coder',
+        name: 'Vibe Coder',
+        bnName: 'ভাইব কোডার',
+        icon: 'code-2',
+        tagline: 'AI-Accelerated Web & Interactive App Engineering',
+        taglineBn: 'AI-চালিত দ্রুতগতির ওয়েবসাইট ও ইন্টার‍্যাক্টিভ অ্যাপ ডেভেলপমেন্ট',
+        description: 'Turning raw concepts into production-ready websites, interactive micro-apps, and fluid web experiences at lightning speed using modern AI workflows, HTML5, Tailwind CSS, and JavaScript.',
+        deliverables: ['Interactive Single-Page Apps', 'Liquid Glass Portfolios', 'Custom Web Tools & Landing Pages', 'Rapid MVP Prototyping'],
+        tools: ['AI Coding Workflows', 'JavaScript ES6+', 'Tailwind CSS', 'React / Three.js']
+      },
+      {
+        id: 'video-editor',
+        name: 'Video Editor',
+        bnName: 'ভিডিও এডিটর',
+        icon: 'clapperboard',
+        tagline: 'High-Retention Pacing, Color Grading & Sound Design',
+        taglineBn: 'সিনেম্যাটিক ভিডিও এডিটিং, কালার গ্রেডিং ও সাউন্ড ডিজাইন',
+        description: 'Crafting engaging YouTube documentaries, reels, tech reviews, and cinematic edits with razor-sharp pacing, smooth transitions, atmospheric sound design, and moody color grades.',
+        deliverables: ['YouTube Long-Form & Shorts', 'Cinematic Reels & Promos', 'Audio Remix & Beat Sync', 'Color Grading & Subtitles'],
+        tools: ['Premiere Pro', 'CapCut Desktop', 'DaVinci Resolve', 'Audition']
+      },
+      {
+        id: 'ui-ux-designer',
+        name: 'UI/UX Designer',
+        bnName: 'ইউআই/ইউএক্স ডিজাইনার',
+        icon: 'layout-template',
+        tagline: 'Tactile Glassmorphism & User-Centric Interfaces',
+        taglineBn: 'আধুনিক গ্লাসমরফিজম ইন্টারফেস ও ইউজার-ফ্রেন্ডলি ডিজাইন',
+        description: 'Designing intuitive mobile apps and web interfaces that feel alive—combining frosted glass depth, micro-interactions, clear typography, and effortless user journeys.',
+        deliverables: ['Mobile App UI Kits', 'SaaS & Web Dashboards', 'Interactive Wireframes', 'Design Systems'],
+        tools: ['Figma', 'Framer', 'Prototyping', 'Design Tokens']
+      },
+      {
+        id: 'logo-designer',
+        name: 'Logo Designer',
+        bnName: 'লোগো ডিজাইনার',
+        icon: 'hexagon',
+        tagline: 'Timeless Monograms & Geometric Brand Marks',
+        taglineBn: 'মিনিমালিস্ট লোগো ও ইউনিক ব্র্যান্ড আইডেন্টিটি ডিজাইন',
+        description: 'Distilling a brand’s essence into clean, memorable vector logos, custom monograms, and cohesive visual identity systems built to look sharp from favicons to billboards.',
+        deliverables: ['Minimalist Brand Marks', 'Personal Monograms', 'Brand Color & Font Guides', 'Vector Source Files'],
+        tools: ['Adobe Illustrator', 'Vector Geometry', 'Typography', 'Brand Strategy']
+      },
+      {
+        id: 'thumbnail-maker',
+        name: 'Thumbnail Maker',
+        bnName: 'থাম্বনেইল মেকার',
+        icon: 'image-plus',
+        tagline: 'High-CTR Visual Hooks & Dramatic Lighting',
+        taglineBn: 'হাই-CTR ইউটিউব থাম্বনেইল ও আকর্ষণীয় ভিজ্যুয়াল হুক',
+        description: 'Engineering scroll-stopping YouTube thumbnails using dramatic rim lighting, expressive composition, clean focal hierarchy, and curiosity-driven visual storytelling.',
+        deliverables: ['Tech & Gaming Thumbnails', 'Documentary Story Hooks', 'Before/After A/B Variants', 'Custom Photo Manipulation'],
+        tools: ['Adobe Photoshop', 'Color Compositing', 'Lighting FX', 'CTR Psychology']
+      },
+      {
+        id: 'web-developer',
+        name: 'Web Developer',
+        bnName: 'ওয়েব ডেভেলপার',
+        icon: 'globe',
+        tagline: 'Full-Stack Responsive & Modern Web Development',
+        taglineBn: 'রেসপন্সিভ ও মডার্ন ফুল-স্ট্যাক ওয়েব ডেভেলপমেন্ট',
+        description: 'Developing fast, responsive, and SEO-friendly websites and modern web applications with clean architecture, interactive UI components, and seamless cross-device performance.',
+        deliverables: ['Custom Business & Portfolio Sites', 'Responsive Web Applications', 'Interactive UI & Animations', 'API Integration & Optimization'],
+        tools: ['HTML5 & CSS3', 'JavaScript (ES6+)', 'React & Tailwind CSS', 'Responsive UI']
+      },
+      {
+        id: 'motion-vfx',
+        name: 'Motion & VFX Artist',
+        bnName: 'মোশন ও ভিএফএক্স আর্টিস্ট',
+        icon: 'sparkles',
+        tagline: 'Dynamic Kinetic Typography & Visual Effects',
+        taglineBn: 'কাইনেটিক টাইপোগ্রাফি ও ভিজ্যুয়াল ইফেক্টস',
+        description: 'Bringing static graphics and footage to life with smooth keyframe animation, glowing HUD overlays, logo reveals, and seamless speed-ramped transitions.',
+        deliverables: ['Animated Logo Intros', 'Kinetic Text Overlays', 'HUD & Glass UI Motion', 'Speed Ramps & Transitions'],
+        tools: ['After Effects', 'Keyframe Curves', '3D Camera Tracking', 'Compositing']
+      },
+      {
+        id: 'ai-creator',
+        name: 'AI Content Strategist',
+        bnName: 'AI কনটেন্ট ক্রিয়েটর',
+        icon: 'bot',
+        tagline: 'Next-Gen Generative Media & Creative Automation',
+        taglineBn: 'জেনারেটিভ AI মিডিয়া ও ক্রিয়েটিভ অটোমেশন',
+        description: 'Harnessing generative AI tools for concept art, voiceovers, script ideation, and rapid visual asset generation to multiply creative output without sacrificing soul.',
+        deliverables: ['AI Visual Concept Art', 'Automated Content Workflows', 'Script & Hook Engineering', 'Custom Prompt Systems'],
+        tools: ['Generative Image/Video', 'LLM Prompting', 'AI Audio', 'Hybrid Workflows']
+      }
+    ];
+
+    // Sample Selected Works Portfolio
+    const PROJECTS_DATA = [
+      {
+        title: 'LiquidOS — Glassmorphic Web Desktop',
+        category: 'Vibe Coder',
+        badge: 'Vibe Coding • HTML/JS',
+        summary: 'An interactive browser-based macOS-style frosted glass environment with draggable windows, live clock, and ambient shaders.',
+        metrics: '100% Single-File Build',
+        accent: 'from-zinc-200/20 to-zinc-500/5'
+      },
+      {
+        title: 'Noir Tech Documentary Edit',
+        category: 'Video Editor',
+        badge: 'Video Editing • 4K',
+        summary: 'High-retention 14-minute tech storytelling edit featuring custom sound design, 3D map zooms, and monochrome-to-color transitions.',
+        metrics: '74% Avg. Viewer Retention',
+        accent: 'from-slate-200/20 to-slate-600/5'
+      },
+      {
+        title: 'AetherPay — FinTech Mobile UI',
+        category: 'UI/UX Designer',
+        badge: 'UI/UX • Figma',
+        summary: 'Dark-mode glassmorphic banking interface featuring translucent virtual cards, biometric gestures, and real-time spending analytics.',
+        metrics: '40+ Interactive Screens',
+        accent: 'from-white/20 to-zinc-700/5'
+      },
+      {
+        title: 'VORTEX — Minimalist Monogram',
+        category: 'Logo Designer',
+        badge: 'Logo Design • Vector',
+        summary: 'Geometric negative-space brand mark and monochrome identity guidelines designed for a next-gen AI software studio.',
+        metrics: 'Full Brand Identity Kit',
+        accent: 'from-zinc-300/20 to-neutral-700/5'
+      },
+      {
+        title: '"The AI Revolution" Viral Thumbnail',
+        category: 'Thumbnail Maker',
+        badge: 'Thumbnail • Photoshop',
+        summary: 'High-contrast rim-lit portrait composition with depth-of-field blur and bold focal hierarchy engineered for maximum click-through rate.',
+        metrics: '14.8% CTR Benchmark',
+        accent: 'from-stone-200/20 to-stone-700/5'
+      },
+      {
+        title: 'Pulse Studio — Creator Portfolio',
+        category: 'Vibe Coder',
+        badge: 'Vibe Coding • UI/UX',
+        summary: 'Bespoke interactive creator hub with live audio visualizer, dynamic role filtering, and frosted glass bento architecture.',
+        metrics: '0.4s Load Speed',
+        accent: 'from-zinc-200/20 to-zinc-600/5'
+      }
+    ];
+
+    let activeRoleIndex = 0;
+    let currentLang = 'en';
+    let typewriterTimer = null;
+
+    // Initialize Page
+    window.addEventListener('DOMContentLoaded', () => {
+      renderHeroRolePills();
+      renderBentoGrid();
+      selectRole(0);
+      renderProjects('all');
+      startRoleTypewriter();
+      initPortraitTilt();
+      initScrollReveal();
+      lucide.createIcons();
+    });
+
+    // Render Hero Role Pills
+    function renderHeroRolePills() {
+      const container = document.getElementById('heroRolePills');
+      container.innerHTML = ROLES_DATA.map((role, idx) => `
+        <button
+          onclick="selectRole(${idx}, true)"
+          class="hero-role-pill glass-pill rounded-full px-3.5 py-1.5 text-xs font-medium text-zinc-200 flex items-center gap-1.5 ${idx === activeRoleIndex ? 'active' : ''}"
+          data-idx="${idx}"
+        >
+          <i data-lucide="${role.icon}" class="w-3.5 h-3.5"></i>
+          <span>${currentLang === 'bn' ? role.bnName : role.name}</span>
+        </button>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // Render 8-Card Bento Grid
+    function renderBentoGrid() {
+      const grid = document.getElementById('rolesBentoGrid');
+      grid.innerHTML = ROLES_DATA.map((role, idx) => `
+        <div
+          onclick="selectRole(${idx}, false)"
+          class="bento-role-card liquid-card rounded-3xl p-5 cursor-pointer relative overflow-hidden group ${idx === activeRoleIndex ? 'ring-1 ring-white/50 bg-white/[0.09]' : ''}"
+          data-idx="${idx}"
+        >
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-11 h-11 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+              <i data-lucide="${role.icon}" class="w-5 h-5"></i>
+            </div>
+            <span class="text-[11px] font-mono text-zinc-400">0${idx + 1}</span>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white group-hover:text-white transition">
+            ${role.name}
+          </h3>
+          <p class="font-bangla text-xs text-zinc-400 mt-0.5">${role.bnName}</p>
+          <p class="text-xs text-zinc-300/80 mt-3 line-clamp-2 leading-relaxed">
+            ${currentLang === 'bn' ? role.taglineBn : role.tagline}
+          </p>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // Select a Role & Update Spotlight Panel
+    function selectRole(index, scrollToCraft = false) {
+      activeRoleIndex = index;
+      const role = ROLES_DATA[index];
+
+      // Update active states on pills & cards
+      document.querySelectorAll('.hero-role-pill').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+      });
+      document.querySelectorAll('.bento-role-card').forEach((el, i) => {
+        if (i === index) {
+          el.classList.add('ring-1', 'ring-white/50', 'bg-white/[0.09]');
+        } else {
+          el.classList.remove('ring-1', 'ring-white/50', 'bg-white/[0.09]');
+        }
+      });
+
+      // Update Spotlight Glass Panel
+      const panel = document.getElementById('roleSpotlightPanel');
+      panel.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-zinc-200">
+              <i data-lucide="${role.icon}" class="w-3.5 h-3.5"></i>
+              <span>Active Spotlight • ${role.bnName}</span>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">
+              ${role.name} — <span class="text-zinc-300 font-normal text-xl sm:text-2xl">${currentLang === 'bn' ? role.taglineBn : role.tagline}</span>
+            </h3>
+            <p class="text-sm text-zinc-300/90 leading-relaxed">
+              ${role.description}
+            </p>
+            <div class="pt-2 flex flex-wrap gap-2">
+              ${role.tools.map(tool => `
+                <span class="px-3 py-1 rounded-full text-xs bg-black/40 border border-white/15 text-zinc-300">
+                  ${tool}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 rounded-2xl bg-white/[0.04] border border-white/12 p-5 space-y-3">
+            <p class="text-xs uppercase tracking-wider text-zinc-400 font-semibold">Key Deliverables</p>
+            <ul class="space-y-2">
+              ${role.deliverables.map(item => `
+                <li class="flex items-center gap-2.5 text-sm text-zinc-200">
+                  <span class="w-5 h-5 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
+                    <i data-lucide="check" class="w-3 h-3 text-white"></i>
+                  </span>
+                  <span>${item}</span>
+                </li>
+              `).join('')}
+            </ul>
+            <div class="pt-2">
+              <a href="https://wa.me/8801938184786" target="_blank" rel="noopener noreferrer" class="w-full rounded-xl py-2.5 px-4 bg-white/15 hover:bg-white hover:text-black border border-white/20 text-xs font-semibold text-white transition flex items-center justify-center gap-2">
+                <span>Contact on WhatsApp for ${role.name}</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+
+      if (scrollToCraft) {
+        document.getElementById('craft').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    // Render Selected Works Cards
+    function renderProjects(filterCategory) {
+      const grid = document.getElementById('projectsGrid');
+      const filtered = filterCategory === 'all'
+        ? PROJECTS_DATA
+        : PROJECTS_DATA.filter(p => p.category === filterCategory);
+
+      grid.innerHTML = filtered.map((proj, idx) => `
+        <article onclick="openProjectModal(${PROJECTS_DATA.indexOf(proj)})" class="liquid-card rounded-3xl p-6 flex flex-col justify-between cursor-pointer group">
+          <div>
+            <!-- Visual Preview Header -->
+            <div class="h-36 rounded-2xl bg-gradient-to-br ${proj.accent} border border-white/10 mb-5 p-4 flex flex-col justify-between relative overflow-hidden">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-medium bg-black/50 backdrop-blur-md border border-white/15 text-zinc-200">
+                  ${proj.badge}
+                </span>
+                <span class="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition">
+                  <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </span>
+              </div>
+              <div class="font-display text-xs tracking-wider uppercase text-zinc-300/80">
+                ${proj.metrics}
+              </div>
+            </div>
+
+            <h3 class="font-display text-lg font-bold text-white group-hover:text-zinc-200 transition">
+              ${proj.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-zinc-400 mt-2 leading-relaxed">
+              ${proj.summary}
+            </p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-zinc-300">
+            <span>${proj.category}</span>
+            <span class="text-white font-medium group-hover:underline">Inspect Case →</span>
+          </div>
+        </article>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function filterWorks(category) {
+      document.querySelectorAll('.work-filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === category);
+      });
+      renderProjects(category);
+    }
+
+    // Animated Role Cycle in Hero
+    function startRoleTypewriter() {
+      const badge = document.getElementById('typewriterRole');
+      let idx = 0;
+      setInterval(() => {
+        idx = (idx + 1) % ROLES_DATA.length;
+        badge.style.opacity = '0';
+        badge.style.transform = 'translateY(4px)';
+        setTimeout(() => {
+          badge.textContent = currentLang === 'bn' ? ROLES_DATA[idx].bnName : ROLES_DATA[idx].name;
+          badge.style.opacity = '1';
+          badge.style.transform = 'translateY(0)';
+        }, 220);
+      }, 2800);
+      badge.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+    }
+
+    // Bilingual Toggle (English <-> Bangla)
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'bn' : 'en';
+      document.getElementById('langLabel').textContent = currentLang === 'en' ? 'বাংলা' : 'English';
+
+      document.querySelectorAll('[data-en][data-bn]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${currentLang}`);
+      });
+
+      renderHeroRolePills();
+      renderBentoGrid();
+      selectRole(activeRoleIndex, false);
+      showToast(currentLang === 'bn' ? 'বাংলা ভাষায় পরিবর্তন করা হয়েছে' : 'Switched to English');
+    }
+
+    // Interactive 3D Liquid Glass Tilt on Portrait Frame
+    function initPortraitTilt() {
+      const card = document.getElementById('portraitTiltCard');
+      if (!card) return;
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      });
+    }
+
+    // Scroll Reveal Observer
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    // Modal Controls
+    function openProjectModal(index) {
+      const proj = PROJECTS_DATA[index];
+      const modal = document.getElementById('projectModal');
+      const content = document.getElementById('projectModalContent');
+
+      content.innerHTML = `
+        <span class="inline-block px-3 py-1 rounded-full text-xs bg-white/10 border border-white/15 text-zinc-200">
+          ${proj.badge}
+        </span>
+        <h3 class="font-display text-2xl font-bold text-white">${proj.title}</h3>
+        <p class="text-sm text-zinc-300 leading-relaxed">${proj.summary}</p>
+        <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-4 flex items-center justify-between">
+          <div>
+            <p class="text-[11px] uppercase tracking-wider text-zinc-400">Highlight Metric</p>
+            <p class="font-display font-bold text-base text-white mt-0.5">${proj.metrics}</p>
+          </div>
+          <span class="px-3 py-1.5 rounded-xl bg-white/10 text-xs text-zinc-200">${proj.category}</span>
+        </div>
+        <div class="pt-2 flex gap-3">
+          <a href="https://wa.me/8801938184786" target="_blank" rel="noopener noreferrer" class="flex-1 rounded-xl py-3 bg-white text-black font-semibold text-xs sm:text-sm hover:bg-zinc-200 transition text-center">
+            Contact on WhatsApp (01938184786)
+          </a>
+          <button onclick="closeProjectModal()" class="glass-pill rounded-xl px-5 py-3 text-xs sm:text-sm text-white">
+            Close
+          </button>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function openContactModal() {
+      const modal = document.getElementById('contactModal');
+      document.getElementById('formSuccessBanner').classList.add('hidden');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function openContactWithService(serviceName) {
+      openContactModal();
+      const select = document.getElementById('serviceSelect');
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].text.toLowerCase().includes(serviceName.toLowerCase().split(' ')[0])) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    }
+
+    function closeContactModal() {
+      const modal = document.getElementById('contactModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      document.getElementById('formSuccessBanner').classList.remove('hidden');
+      e.target.reset();
+      showToast('Inquiry delivered to Shakib Al Hasan!');
+      setTimeout(() => {
+        closeContactModal();
+      }, 2200);
+    }
+
+    // Clipboard Copy Helper for WhatsApp Number
+    function copyWhatsApp() {
+      const phone = '01938184786';
+      const tempInput = document.createElement('input');
+      tempInput.value = phone;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      showToast('WhatsApp number copied: ' + phone);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastBanner');
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2800);
+    }
+  </script>
+</body>
+</html>
